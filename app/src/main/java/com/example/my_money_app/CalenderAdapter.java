@@ -17,8 +17,6 @@ public class CalenderAdapter extends RecyclerView.Adapter<CalenderViewHolder> {
         this.daysOfMonth = daysOfMonth;
         this.onItemListener = onItemListener;
     }
-
-
     @NonNull
     @Override
     public CalenderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
