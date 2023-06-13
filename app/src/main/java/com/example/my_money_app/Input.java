@@ -3,6 +3,7 @@ package com.example.my_money_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,8 @@ EditText expenses;
 String dateString;
 Button resultButton;
 Button backButton;
+Button badgeButton;
+private boolean isBadgeOn = false;
 //ToDo: EditText boxes must only take numerical input.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ Button backButton;
         addBtn = findViewById(R.id.Add);
         resultButton = findViewById(R.id.results_button);
         backButton = findViewById(R.id.return_button);
-
+        badgeButton = findViewById(R.id.badge_button);
 
 
 //        resultButton.setOnClickListener(v -> {
@@ -60,6 +63,16 @@ Button backButton;
             Intent i = new Intent(Input.this, DashboardActivity.class);
             startActivity(i);
         });
+        badgeButton.setOnClickListener(v -> {
+            isBadgeOn = !isBadgeOn;
+            if (isBadgeOn) {
+                badgeButton.setBackgroundColor(Color.GREEN);
+                Toast.makeText(Input.this, "Badge is ON", Toast.LENGTH_SHORT).show();
+            } else {
+                badgeButton.setBackgroundColor(Color.RED);
+                Toast.makeText(Input.this, "Badge is OFF", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //make onclick with bundle to send data to result activity
         addBtn.setOnClickListener(v -> {
@@ -84,6 +97,7 @@ Button backButton;
             bundle.putString("study",studied);
             bundle.putString("expense",expen);
             bundle.putString("date",dateString);
+            bundle.putBoolean("badge", isBadgeOn);
             i.putExtras(bundle);
             startActivity(i);
         });

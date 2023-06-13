@@ -17,6 +17,7 @@ public class CalenderAdapter extends RecyclerView.Adapter<CalenderViewHolder> {
         this.daysOfMonth = daysOfMonth;
         this.onItemListener = onItemListener;
     }
+
     @NonNull
     @Override
     public CalenderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,7 +30,10 @@ public class CalenderAdapter extends RecyclerView.Adapter<CalenderViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CalenderViewHolder holder, int position) {
-            holder.dayOfMonth.setText(daysOfMonth.get(position));
+        holder.dayOfMonth.setText(daysOfMonth.get(position));
+
+        // Set the initial visibility of the badge
+        holder.badge.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -37,8 +41,7 @@ public class CalenderAdapter extends RecyclerView.Adapter<CalenderViewHolder> {
         return daysOfMonth.size();
     }
 
-    public interface OnItemListener
-    {
+    public interface OnItemListener {
         void onItemClick(int position, String dayText);
     }
 }

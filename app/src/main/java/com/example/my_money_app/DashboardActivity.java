@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +64,6 @@ public class DashboardActivity extends AppCompatActivity implements CalenderAdap
         int daysInMonth = yearMonth.lengthOfMonth();
         LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
-
         for(int i =1; i <=32; i++ ){
             if(i <= dayOfWeek || i > daysInMonth + dayOfWeek){
                 daysInMonthArray.add("");
@@ -78,7 +78,6 @@ public class DashboardActivity extends AppCompatActivity implements CalenderAdap
     private String monthYearFromDate(LocalDate date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
         return date.format(formatter);
-
     }
 
     private void initWidgets() {
